@@ -1,0 +1,10 @@
+# creates folderstructure if not there yet
+def create_folder_structure(dirname, rootdir):
+    try:
+        os.makedirs(f'{rootdir}/{dirname}')
+        logging.info(f'{dirname} in {rootdir} created.')
+    except OSError as e:
+        # print(f'{dirname} in {rootdir} already exists.')
+        if e.errno != errno.EEXIST:
+            logging.error(f'Could not create {dirname} in {rootdir}.')
+            raise
